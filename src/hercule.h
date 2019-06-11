@@ -8,6 +8,6 @@
 #define MATCHER_NOT_FOUND 2
 #define MATCHER_ERROR 3
 
-Pixmap* find_pattern(Pixmap *src, Pixmap *pattern, int *status);
+Pixmap *find_pattern(Pixmap * src, Pixmap * pattern, int *status);
 
 #endif
