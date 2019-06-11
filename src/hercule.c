@@ -143,7 +143,7 @@ float compute_correlation(int max_x, int max_y,
  *            given pattern stored represented as Pixmap
  * @return new image with highlightet pattern found
  */
-Pixmap* find_pattern(Pixmap *src, Pixmap *pattern)
+Pixmap* find_pattern(Pixmap *src, Pixmap *pattern, int *status)
 {
     Pixmap *dst = pixmap_clone(src);
 
@@ -195,13 +195,15 @@ Pixmap* find_pattern(Pixmap *src, Pixmap *pattern)
 
     if (found_exact) {
         printf("Result: exact match\n");
+        *status = MATCHER_EXACT_MATCH;
     }
-
-    if (best_correlation / autocorrelation < CORRELATION_THRESHOLD)
+    else if (best_correlation / autocorrelation < CORRELATION_THRESHOLD)
     {
+        *status = MATCHER_NOT_FOUND;
         printf("Result: not found\n");
     }
     else {
+        *status = MATCHER_FOUND;
         printf("Result: found\n");
     }
 
