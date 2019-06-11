@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "pixmap.h"
 
-Pixmap* bmp_read(const char *file_name);
-Pixmap* bmp_read_from_stream(const char *file_name, FILE *fin);
+Pixmap *bmp_read(const char *file_name);
+Pixmap *bmp_read_from_stream(const char *file_name, FILE * fin);
 
 #endif
