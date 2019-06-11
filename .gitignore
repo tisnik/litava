@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
 
+# Temporary files and saves
+*.h~
+*.c~
+
 # Object files
 *.o
 *.ko
