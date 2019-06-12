@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "pixmap.h"
 
-int ppm_write(const Pixmap *pixmap, const char *file_name);
-void ppm_write_to_stream(const Pixmap *pixmap, FILE *fout);
+int ppm_write(const Pixmap * pixmap, const char *file_name);
+void ppm_write_to_stream(const Pixmap * pixmap, FILE * fout);
 
 #endif
