@@ -36,6 +36,7 @@ int bmp_write_to_stream(const Pixmap *pixmap, FILE *fout)
     int width, height, bpp;
     int pixel_array_size = pixmap_size(pixmap);
     int bmp_size = pixel_array_size + sizeof(bmp_header);
+    int scanline;
 
     width = pixmap -> width;
     height = pixmap -> height;
@@ -57,7 +58,26 @@ int bmp_write_to_stream(const Pixmap *pixmap, FILE *fout)
     write4bytes(bmp_header, 34, pixel_array_size);
 
     fwrite(bmp_header, sizeof(bmp_header), 1, fout);
-    fwrite(pixmap->pixels, pixmap_size(pixmap), 1, fout);
+
+    scanline = width * pixmap->bpp;
+    printf("%d %d %d\n", scanline, width, bpp);
+
+    /* align ok! */
+    if (scanline % 4 == 0) {
+        fwrite(pixmap->pixels, pixmap_size(pixmap), 1, fout);
+    }
+    else {
+        int y;
+        int offset = 0;
+        char padding_array[4];
+        int padding = (4 - scanline % 4) & 0x03;
+
+        for (y=0; y < height; y++) {
+            fwrite(pixmap->pixels + offset, scanline, 1, fout);
+            offset += scanline;
+            fwrite(padding_array, padding, 1, fout);
+        }
+    }
     return 1;
 }
 
