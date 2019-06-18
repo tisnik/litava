@@ -24,6 +24,12 @@ test:	$(EXENAME)
 	$(foreach var,$(TEST_NUMBERS),./$(EXENAME) test/test.bmp test/pattern$(var).bmp result$(var).bmp;)
 
 
+TEST_NUMBERS_2 = 1 2 3
+
+test2:	$(EXENAME)
+	$(foreach var,$(TEST_NUMBERS_2),./$(EXENAME) test/test2.bmp test/pattern2_$(var).bmp result2_$(var).bmp;)
+
+
 OBJFILES=$(OBJDIR)/litava.o $(OBJDIR)/pixmap.o $(OBJDIR)/bmp_reader.o $(OBJDIR)/bmp_writer.o $(OBJDIR)/ppm_writer.o $(OBJDIR)/hercule.o
 
 
