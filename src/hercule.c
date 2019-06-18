@@ -148,7 +148,7 @@ Pixmap* find_pattern(Pixmap *src, Pixmap *pattern, int *status)
     Pixmap *dst = pixmap_clone(src);
 
     /* it is much faster to work directly with color components stored as float values */
-    float ***src_f = image_to_float_array(src, 1);
+    float ***src_f = image_to_float_array(src, 0);
     float ***pattern_f = image_to_float_array(pattern, 1);
 
     int max_x = src->width - pattern->width;
