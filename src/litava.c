@@ -13,8 +13,8 @@ int flag_specified(const char *short_flag, const char *long_flag, const char *ar
 
 int main(int argc, char **argv) {
     Pixmap *src = NULL;
-    Pixmap *pattern1 = NULL;
-    Pixmap *dest1 = NULL;
+    Pixmap *pattern = NULL;
+    Pixmap *dest = NULL;
     int status = -1;
 
     if (argc == 2) {
@@ -32,11 +32,21 @@ int main(int argc, char **argv) {
     }
 
     src = bmp_read(argv[1]);
-    pattern1 = bmp_read(argv[2]);
+    pattern = bmp_read(argv[2]);
 
-    dest1 = find_pattern(src, pattern1, &status);
+    if (src == NULL) {
+        puts("No input image");
+        return -2;
+    }
+
+    if (pattern == NULL) {
+        puts("No pattern image");
+        return -3;
+    }
+
+    dest = find_pattern(src, pattern, &status);
     printf("Status: %d\n", status);
-    bmp_write(dest1, argv[3]);
+    bmp_write(dest, argv[3]);
 
     return status;
 }
