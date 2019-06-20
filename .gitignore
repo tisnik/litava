@@ -1,6 +1,9 @@
 # The result binary
 litava
 
+# Temporary files and test results
+*.bmp
+
 # Prerequisites
 *.d
 
