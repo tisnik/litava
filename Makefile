@@ -17,17 +17,22 @@ run:	$(EXENAME)
 	./$(EXENAME)
 
 
-TEST_NUMBERS = 1 2 3 4 6 7 8 9
+TEST_NUMBERS_1 = 1 2 3 4 6 7 8 9
 
 .PHONY: test
-test:	$(EXENAME)
-	$(foreach var,$(TEST_NUMBERS),./$(EXENAME) test/test.bmp test/pattern$(var).bmp result$(var).bmp;)
+test1:	$(EXENAME)
+	$(foreach var,$(TEST_NUMBERS_1),./$(EXENAME) test/test.bmp test/pattern$(var).bmp result$(var).bmp;)
+
 
 
 TEST_NUMBERS_2 = 1 2 3
 
+.PHONY: test
 test2:	$(EXENAME)
 	$(foreach var,$(TEST_NUMBERS_2),./$(EXENAME) test/test2.bmp test/pattern2_$(var).bmp result2_$(var).bmp;)
+
+
+tests:	test1 test2
 
 
 OBJFILES=$(OBJDIR)/litava.o $(OBJDIR)/pixmap.o $(OBJDIR)/bmp_reader.o $(OBJDIR)/bmp_writer.o $(OBJDIR)/ppm_writer.o $(OBJDIR)/hercule.o
